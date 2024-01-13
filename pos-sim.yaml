@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pos-sim
+spec:
+  selector:
+    matchLabels:
+      app: pos-sim
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pos-sim
+    spec:
+      containers:
+      - name: pos-sim
+        image: richardchesterwood/k8s-fleetman-position-simulator:release2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
+
